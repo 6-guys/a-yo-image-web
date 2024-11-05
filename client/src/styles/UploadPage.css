@@ -1,0 +1,59 @@
+/* 페이지 전체 스타일 */
+.upload-page {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* 버튼 컨테이너 스타일 */
+.button-container {
+  margin-top: 20px;
+}
+
+/* 업로드 버튼 스타일 */
+.upload-button,
+.generate-motion-button {
+  padding: 10px 20px;
+  background-color: #f7c6cc;
+  border: 2px solid #c9949e;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.upload-button:hover {
+  background-color: #c9949e;
+  color: white;
+}
+
+/* 모션 버튼 스타일 */
+.generate-motion-button {
+  background-color: #b3d4fc;
+  border: 2px solid #7aa9d8;
+  display: block;
+  margin: 20px auto;
+}
+
+.generate-motion-button:hover {
+  background-color: #7aa9d8;
+  color: white;
+}
+
+/* 이미지 컨테이너 스타일 */
+.image-container {
+  margin-top: 30px;
+  border: 2px dashed #ccc;
+  padding: 10px;
+  width: 128px;
+  height: 128px;
+  display: inline-block;
+  background-color: #f9f9f9;
+}
+
+/* 이미지 스타일 */
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: auto;
+}
