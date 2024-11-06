@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Image Upload</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* 버튼 사이의 간격 */
+        margin-top: 20px;
+      }
+      .upload-button,
+      .generate-motion-button {
+        padding: 10px 20px;
+        background-color: #f7c6cc;
+        border: 2px solid #c9949e;
+        font-size: 16px;
+        cursor: pointer;
+        width: 150px; /* 버튼의 동일한 가로 크기 */
+        text-align: center;
+      }
+      .generate-motion-button {
+        background-color: #b3d4fc;
+        border: 2px solid #7aa9d8;
+      }
+      .upload-button:hover {
+        background-color: #c9949e;
+        color: white;
+      }
+      .generate-motion-button:hover {
+        background-color: #7aa9d8;
+        color: white;
+      }
+      .image-container {
+        margin-top: 30px;
+        border: 2px dashed #ccc;
+        padding: 10px;
+        width: 128px;
+        height: 128px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f9f9f9;
+        margin-bottom: 20px;
+      }
+      .image-container img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>사진 업로드</h1>
+
+    <div class="image-container">
+      {% if filename %}
+      <img
+        src="{{ url_for('static', filename='uploads/' ~ filename) }}"
+        alt="Uploaded Image"
+      />
+      {% else %}
+      <img
+        src="{{ url_for('static', filename='default.png') }}"
+        alt="Default Image"
+      />
+      {% endif %}
+    </div>
+    <div class="button-container">
+      <form
+        method="post"
+        action="{{ url_for('upload_file') }}"
+        enctype="multipart/form-data"
+        style="display: inline"
+      >
+        <label class="upload-button">
+          사진 선택
+          <input
+            type="file"
+            name="file"
+            style="display: none"
+            onchange="this.form.submit()"
+          />
+        </label>
+      </form>
+    </div>
+
+    <form
+      method="post"
+      action="{{ url_for('create_motion') }}"
+      style="display: inline"
+    >
+      <button type="submit" class="generate-motion-button">모션만들기</button>
+    </form>
+  </body>
+</html>
