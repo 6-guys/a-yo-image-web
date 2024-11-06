@@ -35,6 +35,11 @@ def preprocess_image(image_path):
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+@app.route('/')
+def home():
+    return "Flask server is running"
+
+
 # 파일 업로드 라우트
 @app.route('/upload', methods=['POST'])
 def upload_file():

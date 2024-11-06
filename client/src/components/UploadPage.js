@@ -22,20 +22,31 @@ function UploadPage() {
   const handleUpload = async () => {
     if (!selectedFile) return;
 
-    const formData = new FormData();
-    formData.append("file", selectedFile);
+    // 파일을 읽어 NumPy 배열 형식으로 전송
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    reader.onloadend = async () => {
+      const base64Image = reader.result.split(",")[1]; // base64 문자열 추출
+      const payload = {
+        image: base64Image, // base64 인코딩된 이미지
+      };
 
-    try {
-      const response = await fetch("http://localhost:5000/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const result = await response.json();
-      console.log("Upload Success:", result);
-      setResultMessage(result.message);
-    } catch (error) {
-      console.error("Upload Error:", error);
-    }
+      try {
+        const response = await fetch("http://localhost:5000/upload", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+        console.log("Upload Success:", result);
+        setResultMessage(result.message);
+      } catch (error) {
+        console.error("Upload Error:", error);
+      }
+    };
   };
 
   const handleGenerateMotion = async () => {
